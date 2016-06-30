@@ -1,13 +1,11 @@
 {
-  "name": "react-togglelists",
+  "name": "react-uploader",
   "version": "1.0.0",
   "description": "a practice of react",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-    "dev": "webpack-dev-server --devtool eval --progress --colors --hot --content-base build",
-    "start": "node server.js"
+    "start": "webpack-dev-server --hot --inline",
+    "build": "webpack --progress --profile --colors --config webpack.production.config.js"
   },
   "keywords": [
     "react",
@@ -28,6 +26,7 @@
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.5.0",
     "css-loader": "^0.23.1",
+    "html-webpack-plugin": "^2.21.0",
     "json-loader": "^0.5.4",
     "jsx-loader": "^0.13.2",
     "node-sass": "^3.7.0",

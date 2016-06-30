@@ -1,4 +1,7 @@
 import React, {Component, PropTypes} from 'react';
+import ReactDOM from 'react-dom';
+
+require('../styles/uploadZone.scss');
 
 let isFunction = function(func) {
 	return Object.prototype.toString.call(func) === '[object Function]';
@@ -41,8 +44,8 @@ class UploadZone extends Component {
     }
     files.map((value, index) => {
       files[index].preview = URL.createObjectURL(files[index]);
-      files[index].request = this.upload(files[index]);
-      files[index].uploadPromise = files[index].request.promise();
+      //files[index].request = this.upload(files[index]);
+      //files[index].uploadPromise = files[index].request.promise();
     })
     if (this.props.onDrop) {
       files = Array.prototype.slice.call(files, 0, maxFiles);
@@ -55,12 +58,12 @@ class UploadZone extends Component {
     }
   }
   open() {
-    let fileInput = React.findDOMNode(this.refs.fileInput);
+    let fileInput = ReactDOM.findDOMNode(this.refs.fileInput);
     fileInput.value = null;
     fileInput.click();
   }
   upload(file) {
-    if (!file || filesize === 0) {
+    if (!file || file.size === 0) {
       return null;
     }
     let key = file.preview.split('/').pop() + '.' + file.name.split('.').pop();
@@ -83,7 +86,7 @@ class UploadZone extends Component {
   render() {
     let className = this.props.className || 'upload-zone';
     if (this.state.isDragActive) {
-      className += 'active';
+      className += ' active';
     }
     var style = this.props.style || {
       width: this.props.size || 400,
@@ -94,8 +97,9 @@ class UploadZone extends Component {
       <div className={className} style={style} onClick={this.onClick.bind(this)}
         onDragOver={this.onDragOver.bind(this)} onDragLeave={this.onDragLeave.bind(this)}
         onDrop={this.onDrop.bind(this)}>
-        <input type='file' multiple={this.props.multiple} ref='fileInput' 
+        <input className='need-hide' type='file' multiple={this.props.multiple} ref='fileInput'
         onChange={this.onDrop.bind(this)} accept={this.props.accept} />
+        {this.props.children}
       </div>
     )
   }
@@ -104,7 +108,7 @@ class UploadZone extends Component {
 UploadZone.defaultProps = {
   supportClick: true,
   multiple: true,
-  uploadUrl: 'http://upload.qiniu.com'
+  uploadUrl: 'http://upload.test.com'
 };
 UploadZone.propTypes = {
   onDrop: PropTypes.func.isRequired,

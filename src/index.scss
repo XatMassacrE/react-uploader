@@ -8,107 +8,32 @@ body {
   width: 100%;
   font-family: sans-serif;
 }
-.post-list {
-  height: 100%;
-  width: 30%;
-  background-color: $list-background-color;
-  padding: 20px;
-  float: left;
+h3 {
+  color: #ccc;
 }
-.main-content {
-  height: 100%;
-  width: 60%;
-  padding: 20px;
-  background-color: $light-gray-color;
-  float: left;
-}
-.list-area {
-  margin-top: 15px;
-}
-.title-list {
-  font-size: 1.5rem;
-  font-weight: 300;
-  line-height: 1;
-  vertical-align: baseline;
-  white-space: nowrap;
-  text-align: left;
-  color: $light-gray-color;
-}
-.clear-all {
-  font-weight: 400;
-  font-size: 1rem;
-  color: $base-main-color;
-  float: right;
-}
-.dept-row {
-  font-weight: 400;
-  font-size: 1.2rem;
-  color: $base-main-color;
-  margin-left: 1.4rem;
-}
-.dept-row-number {
-  font-weight: 400;
-  font-size: 1.2rem;
-  color: $base-main-color;
-  float: right;
-}
-.xat-badge {
-  display: inline-block;
-  min-width: 10px;
-  padding: 3px 7px;
-  font-size: 1rem;
-  font-weight: 300;
-  line-height: 1;
-  vertical-align: baseline;
-  white-space: nowrap;
-  text-align: center;
-  color: $base-main-color;
-  background-color: $dark-gray-color;
-  border-radius: .8rem;
-}
-.xat-checkbox {
+.need-hide {
   display: none;
 }
-.xat-checkbox + label {
-  margin-bottom: -2px;
-  display: inline-block;
-  padding: 6px;
-  border: 2px solid $light-gray-color;
-  border-radius: 4px;
-  background-color: $list-background-color;;
+.img-preview {
+  max-width: 200px;
+  max-height: 200px;
 }
-.xat-checkbox:checked + label {
-  background-color: $light-gray-color;
+.tbl-preview{
+  // border-collapse: collapse;
+  // overflow: hidden;
+  position: relative;
+  margin: 20px auto;
+  td{
+    border: 1px solid #ccc;
+    text-align: center;
+    color: gray;
+  }
 }
-.post-row {
-  margin-left: 1rem;
-  font-size: 1rem;
-  font-weight: 300;
-  line-height: 1;
-  vertical-align: baseline;
-  white-space: nowrap;
+.show-files {
   text-align: center;
-  color: $light-gray-color;
-  padding-bottom: 2px;
 }
-.post-row-number {
-  margin-right: 1rem;
-  font-size: 1rem;
-  font-weight: 300;
-  line-height: 1;
-  vertical-align: baseline;
-  white-space: nowrap;
+.button-upload {
+  margin: 60px auto;
   text-align: center;
-  color: $light-gray-color;
-  padding-bottom: 2px;
-  float: right;
 }
-li {
-  list-style: none;
-}
-button {
-  background-color: $list-background-color;
-}
-a {
-  text-decoration: none;
-}
+

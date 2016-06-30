@@ -25,6 +25,31 @@ class App extends Component {
     this.setState({
       files: files
     });
+    console.log(files);
+  }
+  handleUpload(e) {
+    if (this.state.files.length <= 0) {
+      alert('you need add at least one file');
+    }
+    let pgbars = document.querySelectorAll('progress');
+    console.log(pgbars);
+    Array.prototype.map.call(pgbars, value => {
+      let v = parseInt(value.value);
+      if (v < 100) {
+        var timeFunc = setInterval(() => {
+          if (v < 100) {
+            v += 1;
+            value.value = v;
+          } else {
+            alert('file upload success');
+            clearInterval(timeFunc);
+          }
+        }, 50)
+      } else {
+        clearInteval(timeFunc);
+      }
+
+    })
   }
   showFiles() {
     if (this.state.files.length <= 0) {
@@ -42,30 +67,67 @@ class App extends Component {
       let preview = '';
       let progress = progresses && progresses[value.preview];
       if (/image/.test(value.type)) {
-        preview = <img src={value.preview} />;
+        preview = <img className='img-preview' src={value.preview} />;
+      } else {
+        preview = <div className='img-preview'> thie file type cant support preview </div>;
       }
-      filesArray.push(<li key={index}>
-        {preview} {value.name + ':' + value.size/1000 + 'KB'} 
-        {(progress || 0) + '% uploaded'} </li>
+      let progressbar = <progress ref='progressbar' value='0.0' max='100'>upload progress</progress>;
+      filesArray.push(
+        // <li key={index}>
+        // {preview} {value.name + ':' + value.size/1000 + 'KB'}
+        // {(progress || 0) + '% uploaded'} </li>
+        <tr key={index}>
+          <td> {preview} </td>
+          <td> {value.name} </td>
+          <td> {value.type} </td>
+          <td> {Math.ceil(value.size/1024) + 'KB'} </td>
+          <td> {progressbar} </td>
+        </tr>
       );
+
     })
     return (
       <div className='show-files' style={styles}>
         <h3>uploaded files: </h3>
-        <ul>
-          {filesArray}
-        </ul>
+        <table className='tbl-preview'>
+          <thead>
+            <tr>
+              <td> preview area </td>
+              <td> file name </td>
+              <td> file type </td>
+              <td> file size </td>
+              <td> progress bar </td>
+            </tr>
+          </thead>
+          <tbody>
+            {filesArray}
+          </tbody>
+        </table>
       </div>
     )
   }
   render() {
+    let styles = {padding: 30};
+    let zoneStyle = {
+      margin: '20px auto',
+      border: '2px dashed #ccc',
+      borderRadius: '5px',
+      width: '300px',
+      height: '200px',
+      color: '#aaa'
+    };
     return (
       <div className='upload-files-area'>
-        <UploadZone onDrop={this.onDrop} onUpload={this.onUpload} 
-          size={200} token={this.state.token}>
-          <div> Click or Drop files here</div>
+        <UploadZone onDrop={this.onDrop.bind(this)}
+          onUpload={this.onUpload.bind(this)}
+          size={200} token={this.state.token} accept='image/*'
+          style={zoneStyle} >
+          <div style={styles}> Click or Drop files here to upload</div>
         </UploadZone>
         {this.showFiles()}
+        <div className='button-upload'>
+          <button onClick={this.handleUpload.bind(this)}>upload</button>
+        </div>
       </div>
     );
   }
