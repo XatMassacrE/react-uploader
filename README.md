@@ -1,5 +1,6 @@
 ### Introduction
 - this is a simple file uploader by react
+[live demo](http://xatmassacre.com/react-uploader/)
 
 ### Get Start
 - first of all, you need `git`, `node`. If you have, do next.
